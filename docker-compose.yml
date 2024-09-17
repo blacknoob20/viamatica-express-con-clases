@@ -1,0 +1,15 @@
+services:
+  node:
+    container_name: node
+    image: node:alpine
+    stdin_open: true
+    tty: true
+    volumes:
+      - $PWD:/root/pwa
+    working_dir: /root/pwa
+    ports:
+      - '3000:80'
+    networks:
+      - net
+networks:
+  net:
