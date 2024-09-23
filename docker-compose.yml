@@ -1,14 +1,31 @@
+version: '3.8'
 services:
   node:
     container_name: node
-    image: node:alpine
+    image: node:20.17-alpine
+    # command: 'yarn dev'
     stdin_open: true
     tty: true
-    volumes:
-      - $PWD:/root/pwa
-    working_dir: /root/pwa
     ports:
-      - '3000:80'
+      - '3000:3000'
+    volumes:
+      - $PWD:/root/express
+    working_dir: /root/express
+    networks:
+      - net
+  postgres_db:
+    container_name: postgres
+    image: postgres:latest
+    #restart: always
+    #env_file: .env
+    environment:
+      - POSTGRES_PASSWORD=password_123@
+      - POSTGRES_USER=masterDB
+      - POSTGRES_DB=expressDb
+    ports:
+      - 5432:5432
+    #volumes:
+    #  - ./docker/postgres/data:/var/lib/postgresql/data
     networks:
       - net
 networks:
