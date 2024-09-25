@@ -15,17 +15,17 @@ services:
       - net
   postgres_db:
     container_name: postgres
-    image: postgres:latest
+    image: postgres:alpine
     #restart: always
     #env_file: .env
     environment:
-      - POSTGRES_PASSWORD=password_123@
-      - POSTGRES_USER=masterDB
       - POSTGRES_DB=expressDb
+      - POSTGRES_USER=masterDB
+      - POSTGRES_PASSWORD=password_123@
     ports:
       - 5432:5432
-    #volumes:
-    #  - ./docker/postgres/data:/var/lib/postgresql/data
+    volumes:
+      - $PWD/../postgres/var/lib/postgresql/data:/var/lib/postgresql/data
     networks:
       - net
 networks:
