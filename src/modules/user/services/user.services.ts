@@ -1,11 +1,21 @@
 import { JwtHelper } from '@/shared/helpers';
 import { UserRepository } from '../repositories/user.repositoriy';
-import { UserLoginInterface } from '../interfaces';
+import { UserI, UserLoginInterface } from '../interfaces';
 
 export class UserService {
-  async get() {
+  async getUser(id: number) {
+    const user = new UserRepository();
+    return await user.getFindOne(id);
+  }
+
+  async getAllUsers() {
     const allUsers = new UserRepository();
     return await allUsers.getAllUsers();
+  }
+
+  async createUser(user: UserI) {
+    const allUsers = new UserRepository();
+    return await allUsers.createUser(user);
   }
 
   login(user: UserLoginInterface) {

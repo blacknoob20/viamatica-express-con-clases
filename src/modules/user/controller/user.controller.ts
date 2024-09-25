@@ -4,21 +4,25 @@ import { UserLoginInterface } from '../interfaces/user.interface';
 import { serviceResponse, wrapperError } from '@/shared/helpers';
 
 export class UserController {
-  async get(req: Request, res: Response) {
+  async getUser(req: Request, res: Response) {
+    try {
+      const { id } = req.params;
+      const userService = new UserService();
+      const response = await userService.getUser(Number(id));
+
+      serviceResponse({ req, res, data: response });
+    } catch (error: any) {
+      wrapperError({ req, res, })
+    }
+  }
+  async getAllUsers(req: Request, res: Response) {
     try {
       const userService = new UserService();
-      const response = await userService.get();
+      const response = await userService.getAllUsers();
 
-      serviceResponse({
-        req,
-        res,
-        data: response
-      });
+      serviceResponse({ req, res, data: response });
     } catch (error: any) {
-      wrapperError({
-        req,
-        res,
-      })
+      wrapperError({ req, res, })
     }
   }
 

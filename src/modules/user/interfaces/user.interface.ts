@@ -5,6 +5,11 @@ export interface UserLoginInterface {
 
 export interface UserI {
   id: number;
-  fullName: string;
-  body: any;
+  name?: string;
+  status?: boolean;
+  lastName?: string;
+  fullName?: string;
+  body?: any;
+  create_at?: Date;
+  update_at?: Date;
 }

@@ -8,7 +8,11 @@ export class UserRoutes {
 
     router.get(
       '/',
-      userController.get.bind(userController)
+      userController.getAllUsers.bind(userController)
+    )
+    router.get(
+      '/:id',
+      userController.getUser.bind(userController)
     )
 
     router.post(
